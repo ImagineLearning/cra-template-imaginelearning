@@ -31,10 +31,10 @@ export function Counter() {
 					Add Amount
 				</button>
 				<button className={styles.asyncButton} onClick={() => dispatch(incrementAsync1(Number(incrementAmount) || 0))}>
-					Add Async 1
+					Add Async (Redux Observable)
 				</button>
 				<button className={styles.asyncButton} onClick={() => dispatch(incrementAsync2(Number(incrementAmount) || 0))}>
-					Add Async 2
+					Add Async (Redux Thunk)
 				</button>
 			</div>
 		</div>
