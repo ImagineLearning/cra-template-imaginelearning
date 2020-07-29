@@ -1,17 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from '../../app/store';
+import { createAction, createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
+import { RootStateOrAny } from 'react-redux';
+import { ActionsObservable, ofType, StateObservable } from 'redux-observable';
+import { delay, map, tap, withLatestFrom } from 'rxjs/operators';
+import { selectCount } from './counter.selectors';
+import { selectEnvironment } from './environment.selectors';
 
-interface CounterState {
+//==========
+// Reducer
+//==========
+
+type CounterState = {
 	value: number;
-}
-
-const initialState: CounterState = {
-	value: 0
 };
 
 export const counterSlice = createSlice({
 	name: 'counter',
-	initialState,
+	initialState: {
+		value: 0
+	} as CounterState,
 	reducers: {
 		increment: state => {
 			// Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -30,21 +36,57 @@ export const counterSlice = createSlice({
 	}
 });
 
+export default counterSlice.reducer;
+
+//==========
+// Actions
+//==========
+
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
+// This action is used to trigger the `incrementAsync1Epic`. It doesn't cause any
+// changes to the state, so there's no need to define it in our slice above.
+export const incrementAsync1 = createAction<number>('counter/INCREMENT_ASYNC_1');
+
+//==========
+// Thunks
+//==========
+
 // The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
+// can be dispatched like a regular action: `dispatch(incrementAsync2(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-export const incrementAsync = (amount: number): AppThunk => dispatch => {
-	setTimeout(() => {
-		dispatch(incrementByAmount(amount));
-	}, 1000);
-};
+// code can then be executed and other actions can be dispatched.
+export function incrementAsync2(amount: number) {
+	return (dispatch: Dispatch) => {
+		setTimeout(() => {
+			dispatch(incrementByAmount(amount));
+		}, 1000);
+	};
+}
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectCount = (state: RootState) => state.counter.value;
+//==========
+// Epics
+//==========
 
-export default counterSlice.reducer;
+// The function below is called an epic and allows us to use RxJS to perform complex
+// logic with side-effects. The Redux Observable middleware treats dispatched actions
+// and current state as streams, which are passed as parameters to epics. Within an
+// epic you use RxJS operators to perform side-effects, transform data, and ultimately
+// return a stream (Observable) that emits new actions. It is executed by dispatching a
+// regular action: `dispatch(incrementAsync1(10))`.
+function incrementAsync1Epic(action$: ActionsObservable<PayloadAction<number>>, state$: StateObservable<RootStateOrAny>) {
+	return action$.pipe(
+		// Use the `ofType` operator to limit your epic to specific actions
+		ofType(incrementAsync1.type),
+		delay(1000),
+		// We can add the latest values from state to our observable with the `withLatestFrom` operator
+		withLatestFrom(state$),
+		tap(([action, state]) => {
+			console.log(`Environment: ${selectEnvironment(state)}, Current Count: ${selectCount(state)}`);
+		}),
+		// In the end, your Observable should emit a new action
+		map(([action, state]) => incrementByAmount(action.payload))
+	);
+}
+
+export const COUNTER_EPICS = [incrementAsync1Epic];

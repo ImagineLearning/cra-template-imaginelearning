@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootStateOrAny } from 'react-redux';
 import { Environments } from '../../constants/environments';
 
+//==========
 // Reducer
+//==========
 
 export type EnvironmentState = {
 	environment: string;
@@ -25,12 +26,8 @@ const environmentSlice = createSlice({
 
 export default environmentSlice.reducer;
 
+//==========
 // Actions
+//==========
 
 export const { initEnvironment } = environmentSlice.actions;
-
-// Selectors
-
-export function selectEnvironment(state: RootStateOrAny) {
-	return state.environment.environment as Environments;
-}
