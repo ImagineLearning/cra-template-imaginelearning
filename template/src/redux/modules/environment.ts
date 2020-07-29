@@ -1,0 +1,36 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootStateOrAny } from 'react-redux';
+import { Environments } from '../../constants/environments';
+
+// Reducer
+
+export type EnvironmentState = {
+	environment: string;
+	initialized: boolean;
+};
+
+const environmentSlice = createSlice({
+	initialState: {
+		environment: Environments.Production,
+		initialized: false
+	} as EnvironmentState,
+	name: 'environment',
+	reducers: {
+		initEnvironment: (state, { payload }: PayloadAction<Environments | string>) => {
+			const environment = Object.keys(Environments).find(env => env.toLowerCase() === payload) ? payload : Environments.Development;
+			return { ...state, environment, initialized: true };
+		}
+	}
+});
+
+export default environmentSlice.reducer;
+
+// Actions
+
+export const { initEnvironment } = environmentSlice.actions;
+
+// Selectors
+
+export function selectEnvironment(state: RootStateOrAny) {
+	return state.environment.environment as Environments;
+}

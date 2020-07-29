@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { store } from './app/store';
 import { Provider } from 'react-redux';
+import App from './App';
+import { ENV } from './constants/env';
+import './index.css';
+import store from './redux/configureStore';
+import { initEnvironment } from './redux/modules/environment';
 import * as serviceWorker from './serviceWorker';
+
+// Initialize environment configuration in the store
+store.dispatch(initEnvironment(ENV));
 
 ReactDOM.render(
 	<React.StrictMode>
