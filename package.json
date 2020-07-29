@@ -1,6 +1,6 @@
 {
-	"name": "cra-template-redux-typescript",
-	"version": "1.0.1",
+	"name": "cra-template-imaginelearning",
+	"version": "0.1.0",
 	"scripts": {
 		"prettify": "prettier --write './template/src/**/*.{ts,tsx}'",
 		"lint": "eslint './template/src/**/*.{ts,tsx}'",
@@ -14,20 +14,22 @@
 		"typescript",
 		"redux",
 		"reduxjs",
-		"react-redux"
+		"react-redux",
+		"redux-observable",
+		"rxjs"
 	],
-	"description": "The official Imagine Learning template for Create React App with Tailwind CSS",
+	"description": "The official Imagine Learning template for Create React App",
 	"main": "template.json",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/reduxjs/cra-template-redux-typescript.git"
+		"url": "https://github.com/ImagineLearning/cra-template-imaginelearning.git"
 	},
 	"license": "MIT",
 	"engines": {
 		"node": ">=8.10"
 	},
 	"bugs": {
-		"url": "https://github.com/reduxjs/cra-template-redux-typescript/issues"
+		"url": "https://github.com/ImagineLearning/cra-template-imaginelearning/issues"
 	},
 	"files": [
 		"template",
