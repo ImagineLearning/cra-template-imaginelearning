@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
+import { Counter } from './components/Counter/Counter';
+import logo from './logo.svg';
 
 function App() {
 	return (
@@ -25,9 +25,13 @@ function App() {
 					<a className="App-link" href="https://redux-toolkit.js.org/" target="_blank" rel="noopener noreferrer">
 						Redux Toolkit
 					</a>
-					,<span> and </span>
+					<span>, </span>
 					<a className="App-link" href="https://react-redux.js.org/" target="_blank" rel="noopener noreferrer">
 						React Redux
+					</a>
+					,<span> and </span>
+					<a className="App-link" href="https://redux-observable.js.org/" target="_blank" rel="noopener noreferrer">
+						Redux Observable
 					</a>
 				</span>
 			</header>
