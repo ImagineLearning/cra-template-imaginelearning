@@ -57,8 +57,11 @@ export const incrementAsync1 = createAction<number>('counter/INCREMENT_ASYNC_1')
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched.
 export function incrementAsync2(amount: number) {
-	return (dispatch: Dispatch) => {
+	return (dispatch: Dispatch, getState: () => RootStateOrAny) => {
 		setTimeout(() => {
+			// We can get the latest values from state from the store with the `getState` function
+			const state = getState();
+			console.log(`Environment: ${selectEnvironment(state)}, Current Count: ${selectCount(state)}`);
 			dispatch(incrementByAmount(amount));
 		}, 1000);
 	};
