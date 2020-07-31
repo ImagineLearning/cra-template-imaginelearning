@@ -2,7 +2,7 @@
 	"name": "cra-template-imaginelearning",
 	"version": "0.1.0",
 	"scripts": {
-		"prettify": "prettier --write './template/src/**/*.{ts,tsx}'",
+		"prettify": "prettier --write './template/src/**/*.{ts,tsx,css,scss}'",
 		"lint": "eslint './template/src/**/*.{ts,tsx}'",
 		"test": "jest",
 		"type-check": "tsc"
