@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Imagine Learning template](https://github.com/ImagineLearning/cra-template-imaginelearning).
+
+It includes [TypeScript](https://www.typescriptlang.org/), [Redux](https://redux.js.org/), [Redux Toolkit](https://redux-toolkit.js.org/),
+[React Redux](https://react-redux.js.org/), [RxJS](https://rxjs.dev/), and [Redux Observable](https://redux-observable.js.org/).
 
 ## Available Scripts
 
