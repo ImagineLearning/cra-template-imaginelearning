@@ -6,3 +6,7 @@ import { RootStateOrAny } from 'react-redux';
 export function selectCount(state: RootStateOrAny) {
 	return state.counter.value as number;
 }
+
+export function selectTrivia(state: RootStateOrAny) {
+	return state.counter.trivia as string | undefined;
+}

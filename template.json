@@ -1,6 +1,7 @@
 {
 	"package": {
 		"dependencies": {
+			"@imaginelearning/httprx": "^0.1.1",
 			"@reduxjs/toolkit": "^1.2.5",
 			"@testing-library/react": "^9.3.2",
 			"@testing-library/jest-dom": "^4.2.4",
