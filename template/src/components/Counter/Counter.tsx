@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, increment, incrementAsync1, incrementAsync2, incrementByAmount } from '../../redux/modules/counter';
 import { selectCount } from '../../redux/modules/counter.selectors';
-import styles from './Counter.module.css';
+import styles from './Counter.module.scss';
 
 export function Counter() {
 	const count = useSelector(selectCount);
