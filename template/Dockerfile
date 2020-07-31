@@ -17,8 +17,10 @@ COPY .*rc /usr/src/app/
 COPY package.json /usr/src/app/
 COPY yarn.lock /usr/src/app/
 
-# install dependencies
-RUN yarn install --non-interactive
+# configure npm with GitHub access token and install dependencies
+ARG GITHUB_ACCESS_TOKEN
+RUN npm config set //npm.pkg.github.com/:_authToken $GITHUB_ACCESS_TOKEN && \
+	yarn install --non-interactive
 
 # add app source files
 COPY . /usr/src/app
