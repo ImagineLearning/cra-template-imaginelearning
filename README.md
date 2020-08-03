@@ -1,6 +1,7 @@
 # cra-template-imaginelearning
 
 The official Imagine Learning template for [Create React App](https://github.com/facebook/create-react-app).
+Based off of the [official Redux+TS template](https://github.com/reduxjs/cra-template-redux-typescript).
 
 Includes [TypeScript](https://www.typescriptlang.org/), [React Router](https://reactrouter.com/), [Redux](https://redux.js.org/),
 [Redux Toolkit](https://redux-toolkit.js.org/), [React Redux](https://react-redux.js.org/), [RxJS](https://rxjs.dev/), and
