@@ -4,7 +4,7 @@ import { decrement, increment, incrementAsync, incrementByAmount } from '../../r
 import { selectCount, selectTrivia } from '../../redux/modules/counter.selectors';
 import styles from './Counter.module.scss';
 
-export function Counter() {
+function Counter() {
 	const count = useSelector(selectCount);
 	const trivia = useSelector(selectTrivia);
 	const dispatch = useDispatch();
@@ -39,3 +39,5 @@ export function Counter() {
 		</div>
 	);
 }
+
+export default Counter;
