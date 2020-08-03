@@ -12,11 +12,11 @@ To use this template, add `--template imaginelearning` when creating a new app.
 For example:
 
 ```sh
-npx create-react-app my-app --template redux-typescript
+npx create-react-app my-app --template imaginelearning
 
 # or
 
-yarn create react-app my-app --template redux-typescript
+yarn create react-app my-app --template imaginelearning
 ```
 
 This template uses public packages hosted through [GitHub Package Registry (GPR)](https://github.com/features/packages).
