@@ -7,6 +7,7 @@ import './index.scss';
 import store from './redux/configureStore';
 import { initEnvironment } from './redux/modules/environment';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
 // Initialize environment configuration in the store
 store.dispatch(initEnvironment(ENV));
@@ -14,7 +15,9 @@ store.dispatch(initEnvironment(ENV));
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<App />
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
