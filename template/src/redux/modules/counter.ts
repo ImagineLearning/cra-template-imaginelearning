@@ -11,10 +11,10 @@ import { selectEnvironment } from './environment.selectors';
 // Reducer
 //==========
 
-type CounterState = {
+interface CounterState {
 	value: number;
 	trivia?: string;
-};
+}
 
 export const counterSlice = createSlice({
 	name: 'counter',
@@ -67,7 +67,9 @@ export function incrementAsync(amount: number) {
 		setTimeout(() => {
 			// We can get the latest values from state from the store with the `getState` function
 			const state = getState();
-			console.log(`Environment: ${selectEnvironment(state)}, Current Count: ${selectCount(state)}`);
+			console.info(
+				`Environment: ${selectEnvironment(state)}, Current Count: ${selectCount(state)}`
+			);
 			dispatch(incrementByAmount(amount));
 		}, 1000);
 	};
@@ -83,7 +85,10 @@ export function incrementAsync(amount: number) {
 // epic you use RxJS operators to perform side-effects, transform data, and ultimately
 // return a stream (Observable) that emits new actions. It is executed by dispatching a
 // regular action: `dispatch(incrementAsync1(10))`.
-function incrementEpic(action$: ActionsObservable<PayloadAction<number>>, state$: StateObservable<RootStateOrAny>) {
+function incrementEpic(
+	action$: ActionsObservable<PayloadAction<number>>,
+	state$: StateObservable<RootStateOrAny>
+) {
 	return action$.pipe(
 		// Use the `ofType` operator to limit your epic to specific actions
 		ofType(decrement.type, increment.type, incrementByAmount.type),
@@ -100,7 +105,7 @@ function incrementEpic(action$: ActionsObservable<PayloadAction<number>>, state$
 				.pipe(
 					// In the end, your Observable should emit a new action
 					map(({ data }) => triviaReceived(data)),
-					catchError((err) => {
+					catchError((err: unknown) => {
 						console.error(err);
 						// Even if there's an error, emit a new action
 						return of(triviaReceived(''));

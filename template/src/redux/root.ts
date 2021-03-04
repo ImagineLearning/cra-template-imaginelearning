@@ -7,11 +7,13 @@ import counter, { COUNTER_EPICS } from './modules/counter';
 import environment from './modules/environment';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const epics: Array<(
-	$action: ActionsObservable<PayloadAction<any>>,
-	$state: StateObservable<RootStateOrAny>
-) => Observable<PayloadAction<any>>> = [
-	...COUNTER_EPICS
+const epics: Array<
+	(
+		$action: ActionsObservable<PayloadAction<any>>,
+		$state: StateObservable<RootStateOrAny>
+	) => Observable<PayloadAction<any>>
+> = [
+	...COUNTER_EPICS,
 	// Add additional epics here
 ];
 /* eslint-enable */
@@ -21,7 +23,7 @@ export const rootEpic = combineEpics.apply(combineEpics, epics);
 
 const rootReducer = combineReducers({
 	counter,
-	environment
+	environment,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

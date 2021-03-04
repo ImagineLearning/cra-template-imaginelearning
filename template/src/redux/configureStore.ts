@@ -9,15 +9,15 @@ const defaultMiddleware = getDefaultMiddleware({
 		ignoredActions: [
 			// Add actions here whose payload may contain non-serializable values.
 			// Only add them if you are certain it will not cause any issues.
-		]
-	}
+		],
+	},
 });
 
 const middleware = [...defaultMiddleware, epicMiddleware];
 
 const reduxStore = configureStore({
 	reducer,
-	middleware
+	middleware,
 });
 
 epicMiddleware.run(rootEpic);

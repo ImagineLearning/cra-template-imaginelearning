@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ENV } from './constants/env';
 import './index.scss';
 import store from './redux/configureStore';
 import { initEnvironment } from './redux/modules/environment';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
 
 // Initialize environment configuration in the store
 store.dispatch(initEnvironment(ENV));
